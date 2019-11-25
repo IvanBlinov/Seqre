@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>274734301114-ofojloujg8r803avr2air0sgd87f5hpi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.274734301114-ofojloujg8r803avr2air0sgd87f5hpi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA466YgOwEAjlVa38kaiP0OFjRlVC45SnE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>274734301114</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.blinovivan.Seqre</string>
+	<key>PROJECT_ID</key>
+	<string>seqre-267ef</string>
+	<key>STORAGE_BUCKET</key>
+	<string>seqre-267ef.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:274734301114:ios:dcb0926082d6ba3671e783</string>
+	<key>DATABASE_URL</key>
+	<string>https://seqre-267ef.firebaseio.com</string>
+</dict>
+</plist>
