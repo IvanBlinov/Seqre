@@ -13,4 +13,5 @@ class Profile: Object {
     
     @objc dynamic var password = ""
     let dirs = List<Directory>()
+    let loginAttempts = List<LoginAttempt>()
 }

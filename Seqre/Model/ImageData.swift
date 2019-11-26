@@ -12,5 +12,6 @@ import RealmSwift
 class ImageData: Object {
     
     @objc dynamic var base64: String = ""
+    @objc dynamic var loaded: Bool = false
     var parentDirectory = LinkingObjects(fromType: Directory.self, property: "images")
 }

@@ -10,6 +10,9 @@
 		72F78BB98EDA445A49B7C704 /* Pods_Seqre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8DECB90B8EF77CC0258FFB /* Pods_Seqre.framework */; };
 		EC4CB457238C7A2400FBC7A9 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB456238C7A2400FBC7A9 /* MainTabVC.swift */; };
 		EC4CB459238C7B4900FBC7A9 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB458238C7B4900FBC7A9 /* UserProfileVC.swift */; };
+		ECBE299C238D87AD006E3647 /* LoginAttemptsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE299B238D87AD006E3647 /* LoginAttemptsVC.swift */; };
+		ECBE299E238D8EDF006E3647 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE299D238D8EDF006E3647 /* SettingsCell.swift */; };
+		ECBE29A0238D8F14006E3647 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBE299F238D8F14006E3647 /* SettingsSection.swift */; };
 		ECCFE654238757680069F94F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECCFE653238757680069F94F /* GoogleService-Info.plist */; };
 		ECCFE6562387FAFE0069F94F /* UserPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFE6552387FAFE0069F94F /* UserPhotoCell.swift */; };
 		ECCFE6582387FC3C0069F94F /* ImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFE6572387FC3C0069F94F /* ImagesController.swift */; };
@@ -17,6 +20,9 @@
 		ECCFE65C238819DD0069F94F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFE65B238819DD0069F94F /* Constants.swift */; };
 		ECCFE6602388336B0069F94F /* ViewableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFE65F2388336B0069F94F /* ViewableImage.swift */; };
 		ECCFE665238861900069F94F /* ImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFE664238861900069F94F /* ImagePreviewVC.swift */; };
+		ECDCE1E1238D42A300C15DFA /* EditDirVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDCE1E0238D42A300C15DFA /* EditDirVC.swift */; };
+		ECDCE1E3238D488700C15DFA /* LoginAttempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDCE1E2238D488700C15DFA /* LoginAttempt.swift */; };
+		ECDCE1E5238D7F1200C15DFA /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDCE1E4238D7F1100C15DFA /* CaptureManager.swift */; };
 		ECE831EB2387390300108410 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE831EA2387390300108410 /* AppDelegate.swift */; };
 		ECE831ED2387390300108410 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE831EC2387390300108410 /* SceneDelegate.swift */; };
 		ECE831EF2387390300108410 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE831EE2387390300108410 /* ViewController.swift */; };
@@ -38,6 +44,9 @@
 		7E1D7F94F8759FB958E0B6CD /* Pods-Seqre.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seqre.release.xcconfig"; path = "Target Support Files/Pods-Seqre/Pods-Seqre.release.xcconfig"; sourceTree = "<group>"; };
 		EC4CB456238C7A2400FBC7A9 /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
 		EC4CB458238C7B4900FBC7A9 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
+		ECBE299B238D87AD006E3647 /* LoginAttemptsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAttemptsVC.swift; sourceTree = "<group>"; };
+		ECBE299D238D8EDF006E3647 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		ECBE299F238D8F14006E3647 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		ECCFE653238757680069F94F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ECCFE6552387FAFE0069F94F /* UserPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotoCell.swift; sourceTree = "<group>"; };
 		ECCFE6572387FC3C0069F94F /* ImagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesController.swift; sourceTree = "<group>"; };
@@ -45,6 +54,9 @@
 		ECCFE65B238819DD0069F94F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ECCFE65F2388336B0069F94F /* ViewableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewableImage.swift; sourceTree = "<group>"; };
 		ECCFE664238861900069F94F /* ImagePreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewVC.swift; sourceTree = "<group>"; };
+		ECDCE1E0238D42A300C15DFA /* EditDirVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDirVC.swift; sourceTree = "<group>"; };
+		ECDCE1E2238D488700C15DFA /* LoginAttempt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAttempt.swift; sourceTree = "<group>"; };
+		ECDCE1E4238D7F1100C15DFA /* CaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureManager.swift; sourceTree = "<group>"; };
 		ECE831E72387390300108410 /* Seqre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seqre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE831EA2387390300108410 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECE831EC2387390300108410 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +158,8 @@
 				ECCFE664238861900069F94F /* ImagePreviewVC.swift */,
 				EC4CB456238C7A2400FBC7A9 /* MainTabVC.swift */,
 				EC4CB458238C7B4900FBC7A9 /* UserProfileVC.swift */,
+				ECDCE1E0238D42A300C15DFA /* EditDirVC.swift */,
+				ECBE299B238D87AD006E3647 /* LoginAttemptsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -157,6 +171,8 @@
 				ECE8321123873E3700108410 /* Directory.swift */,
 				ECCFE6592387FF650069F94F /* ImageData.swift */,
 				ECCFE65F2388336B0069F94F /* ViewableImage.swift */,
+				ECDCE1E2238D488700C15DFA /* LoginAttempt.swift */,
+				ECBE299D238D8EDF006E3647 /* SettingsCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,6 +191,8 @@
 			children = (
 				ECE8320A23873CA800108410 /* Extensions.swift */,
 				ECCFE65B238819DD0069F94F /* Constants.swift */,
+				ECDCE1E4238D7F1100C15DFA /* CaptureManager.swift */,
+				ECBE299F238D8F14006E3647 /* SettingsSection.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -295,15 +313,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECBE299E238D8EDF006E3647 /* SettingsCell.swift in Sources */,
 				ECE8320E23873D2500108410 /* SignUpVC.swift in Sources */,
 				EC4CB457238C7A2400FBC7A9 /* MainTabVC.swift in Sources */,
 				ECCFE665238861900069F94F /* ImagePreviewVC.swift in Sources */,
 				ECCFE6562387FAFE0069F94F /* UserPhotoCell.swift in Sources */,
 				ECE832142387533700108410 /* DirCell.swift in Sources */,
+				ECBE29A0238D8F14006E3647 /* SettingsSection.swift in Sources */,
 				EC4CB459238C7B4900FBC7A9 /* UserProfileVC.swift in Sources */,
+				ECBE299C238D87AD006E3647 /* LoginAttemptsVC.swift in Sources */,
 				ECE8321023873DDD00108410 /* Profile.swift in Sources */,
 				ECE831EF2387390300108410 /* ViewController.swift in Sources */,
+				ECDCE1E5238D7F1200C15DFA /* CaptureManager.swift in Sources */,
 				ECE8320B23873CA800108410 /* Extensions.swift in Sources */,
+				ECDCE1E3238D488700C15DFA /* LoginAttempt.swift in Sources */,
+				ECDCE1E1238D42A300C15DFA /* EditDirVC.swift in Sources */,
 				ECCFE65A2387FF650069F94F /* ImageData.swift in Sources */,
 				ECE8320323873B7100108410 /* DirController.swift in Sources */,
 				ECE831EB2387390300108410 /* AppDelegate.swift in Sources */,

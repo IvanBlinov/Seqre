@@ -22,14 +22,16 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
     // function to create view controllers that exists within tab bar controller
     func configureViewControllers(with profile: Profile) {
         
-        currentProfile = profile
         // home feed controller
-        let dirController = DirController(collectionViewLayout: UICollectionViewFlowLayout())
+        let dirController = DirController()
         dirController.dirs = profile.dirs
+        dirController.currentProfile = profile
         let feedVC = constructNavController(unselectedImage: UIImage(named: "home_unselected")!, selectedImage: UIImage(named: "home_selected")!, rootViewController: dirController)
         
         // profile controller
-        let userProfileVC = constructNavController(unselectedImage: UIImage(named: "profile_unselected")!, selectedImage: UIImage(named: "profile_selected")!, rootViewController: UserProfileVC(collectionViewLayout: UICollectionViewFlowLayout()))
+        let userProfileController = UserProfileVC()
+        userProfileController.currentProfile = profile
+        let userProfileVC = constructNavController(unselectedImage: UIImage(named: "profile_unselected")!, selectedImage: UIImage(named: "profile_selected")!, rootViewController: userProfileController)
     
         viewControllers = [feedVC, userProfileVC]
         
@@ -37,7 +39,6 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        let index = viewControllers?.firstIndex(of: viewController)
         return true
     }
     

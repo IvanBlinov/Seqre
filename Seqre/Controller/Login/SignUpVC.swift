@@ -13,11 +13,25 @@ class SignUpVC: UIViewController, UINavigationControllerDelegate {
 
     let realm = try! Realm()
     
+    let logoContainerView: UIView = {
+        let view = UIView()
+        
+        let logoImageView = UIImageView(image: UIImage(named: "seqre"))
+        logoImageView.contentMode = .scaleAspectFill
+        view.addSubview(logoImageView)
+        logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 50)
+        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.backgroundColor = UIColor(rgb: 0x272343)
+        return view
+    }()
+    
     let errorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Error Message"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .clear
         return label
     }()
@@ -48,7 +62,7 @@ class SignUpVC: UIViewController, UINavigationControllerDelegate {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.backgroundColor = UIColor(rgb: 0xbae8e8)
         button.layer.cornerRadius = 5
         button.isEnabled = false
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
@@ -60,7 +74,7 @@ class SignUpVC: UIViewController, UINavigationControllerDelegate {
         let button = UIButton(type: .system)
         
         let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSMutableAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSMutableAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor(red: 17/255,green: 154/255, blue: 237/255, alpha: 1)]))
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSMutableAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x63e6e6)]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
@@ -73,8 +87,13 @@ class SignUpVC: UIViewController, UINavigationControllerDelegate {
         
         view.backgroundColor = .white
         
+        navigationController?.navigationBar.isHidden = true
+        
+        view.addSubview(logoContainerView)
+        logoContainerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
+        
         view.addSubview(errorLabel)
-        errorLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: view.frame.height / 4, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        errorLabel.anchor(top: logoContainerView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         configureViewComponents()
     }
@@ -89,11 +108,11 @@ class SignUpVC: UIViewController, UINavigationControllerDelegate {
               confirmPasswordTextField.hasText
             else {
                 signUpButton.isEnabled = false
-                signUpButton.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+                signUpButton.backgroundColor = UIColor(rgb: 0xbae8e8)
                 return
         }
         signUpButton.isEnabled = true
-        signUpButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+        signUpButton.backgroundColor = UIColor(rgb: 0x63e6e6)
     }
     
     @objc func handleSignUp() {
@@ -122,6 +141,7 @@ class SignUpVC: UIViewController, UINavigationControllerDelegate {
                     errorLabel.text = "Profile with such password already exists"
                 } else {
                     errorLabel.textColor = .clear
+                    confirmPasswordTextField.layer.borderWidth = 0
                     try realm.write {
                         realm.add(profile)
                     }
@@ -144,10 +164,10 @@ class SignUpVC: UIViewController, UINavigationControllerDelegate {
         stackView.distribution = .fillEqually
         
         view.addSubview(stackView)
-        stackView.anchor(top: errorLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
+        stackView.anchor(top: errorLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 180)
         
         view.addSubview(alreadyHaveAnAccountButton)
-        alreadyHaveAnAccountButton .anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        alreadyHaveAnAccountButton .anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 50)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

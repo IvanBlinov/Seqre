@@ -18,7 +18,14 @@ class LoginVC: UIViewController {
     let logoContainerView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = UIColor(red: 0/255, green: 120/255, blue: 175/255, alpha: 1)
+        let logoImageView = UIImageView(image: UIImage(named: "seqre"))
+        logoImageView.contentMode = .scaleAspectFill
+        view.addSubview(logoImageView)
+        logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 50)
+        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.backgroundColor = UIColor(rgb: 0x272343)
         return view
     }()
     
@@ -26,7 +33,7 @@ class LoginVC: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Error Message"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .clear
         return label
     }()
@@ -34,8 +41,9 @@ class LoginVC: UIViewController {
     let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
-        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
+        tf.layer.borderColor = UIColor(rgb: 0xe3f6f5).cgColor
+        tf.backgroundColor = UIColor(rgb: 0xFFFFFF)
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.isSecureTextEntry = true
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
@@ -46,7 +54,7 @@ class LoginVC: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.backgroundColor = UIColor(rgb: 0xbae8e8)
         button.layer.cornerRadius = 5
         button.isEnabled = false
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
@@ -57,7 +65,7 @@ class LoginVC: UIViewController {
         let button = UIButton(type: .system)
         
         let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSMutableAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSMutableAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor(red: 17/255,green: 154/255, blue: 237/255, alpha: 1)]))
+        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSMutableAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x63e6e6)]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
@@ -78,7 +86,7 @@ class LoginVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoContainerView)
-        logoContainerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
+        logoContainerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
         
         view.addSubview(errorLabel)
         errorLabel.anchor(top: logoContainerView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -86,7 +94,7 @@ class LoginVC: UIViewController {
         configureViewComponents()
         
         view.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 50)
     }
     
     @objc func handleShowSignUp() {
@@ -100,12 +108,12 @@ class LoginVC: UIViewController {
             passwordTextField.hasText
         else {
             loginButton.isEnabled = false
-            loginButton.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+            loginButton.backgroundColor = UIColor(rgb: 0xbae8e8)
             return
         }
         
         loginButton.isEnabled = true
-        loginButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+        loginButton.backgroundColor = UIColor(rgb: 0x63e6e6)
         
     }
     
@@ -120,6 +128,7 @@ class LoginVC: UIViewController {
 
         if let profile = profiles?.filter(NSPredicate(format: "%K = %@", "password", "\(password)")).first {
             errorLabel.textColor = .clear
+            passwordTextField.layer.borderWidth = 0
             let mainVC = MainTabVC()
             mainVC.configureViewControllers(with: profile)
             navigationController?.pushViewController(mainVC, animated: true)
@@ -129,7 +138,7 @@ class LoginVC: UIViewController {
             passwordTextField.layer.masksToBounds = true
             passwordTextField.layer.borderColor = UIColor.red.cgColor
             errorLabel.textColor = .red
-            errorLabel.text = "No such password"
+            errorLabel.text = "No profile with such password"
             passwordTextField.shake()
         }
     }

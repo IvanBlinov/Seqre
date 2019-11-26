@@ -11,6 +11,7 @@ import RealmSwift
 import YangMingShan
 import Viewer
 import SKPhotoBrowser
+import Firebase
 
 private let reuseIdentifier = "PhotoCell"
 
@@ -19,14 +20,14 @@ class ImagesController: UICollectionViewController, UICollectionViewDelegateFlow
     // MARK: - Properties
     
     let realm = try! Realm()
-    var dir: Directory?
+    var images: List<ImageData>?
     var imagesData: NSArray?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(PhotoItemCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
+        collectionView.backgroundColor = .white
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refreshControl
@@ -47,8 +48,8 @@ class ImagesController: UICollectionViewController, UICollectionViewDelegateFlow
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        if let dir = self.dir {
-            return dir.images.count
+        if let images = self.images {
+            return images.count
         } else {
             return 0
         }
@@ -56,7 +57,7 @@ class ImagesController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var photos = [SKPhoto]()
-        for imageData:ImageData in dir!.images {
+        for imageData:ImageData in images! {
             let photo = SKPhoto.photoWithImage(UIImage.fromBase64(base64: imageData.base64))
             photos.append(photo)
         }
@@ -67,8 +68,8 @@ class ImagesController: UICollectionViewController, UICollectionViewDelegateFlow
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell=collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoItemCell
-        if let dir = self.dir {
-            let base64 = dir.images[indexPath.row].base64
+        if let images = self.images {
+            let base64 = images[indexPath.row].base64
             cell.img.image = UIImage(data: NSData(base64Encoded: base64, options: .ignoreUnknownCharacters)! as Data)
         }
         return cell
@@ -149,6 +150,7 @@ class ImagesController: UICollectionViewController, UICollectionViewDelegateFlow
         }
         // Assign to Array with images
         self.saveBase64Data(with: mutableImages)
+        self.updateModels()
         }
     }
     
@@ -160,12 +162,37 @@ class ImagesController: UICollectionViewController, UICollectionViewDelegateFlow
                     image.base64 = base64
                     return image
                 }
-                self.dir?.images.append(objectsIn: images)
+                self.images?.append(objectsIn: images)
             }
         } catch {
             print("Failed to save data ")
         }
         self.collectionView.reloadData()
+    }
+    
+    func updateModels() {
+        
+        self.images?.forEach({ (imageData) in
+            if !imageData.loaded {
+                if let uploadData = UIImage.fromBase64(base64: imageData.base64).jpegData(compressionQuality: 0.5) {
+                    let fileName = NSUUID().uuidString
+                    
+                    let storageRef = STORAGE_PROFILE_IMAGES_REF.child(fileName)
+                        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                            do {
+                                try self.realm.write {
+                                    if let _ = error {
+                                        imageData.loaded = false
+                                    }
+                                    imageData.loaded = true
+                                }
+                            } catch {
+                                
+                            }
+                        })
+                }
+            }
+        })
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -204,11 +231,10 @@ class ImagesController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func viewerController(_ viewerController: ViewerController, viewableAt indexPath: IndexPath) -> Viewable {
-        let image = UIImage(data: NSData(base64Encoded: dir!.images[indexPath.row].base64, options: .ignoreUnknownCharacters)! as Data)
+        let image = UIImage(data: NSData(base64Encoded: images![indexPath.row].base64, options: .ignoreUnknownCharacters)! as Data)
         let viewableImage = ViewableImage(with: image!)
         return viewableImage
     }
-    
 }
 
 class PhotoItemCell: UICollectionViewCell {

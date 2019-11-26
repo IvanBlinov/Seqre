@@ -1,5 +1,7 @@
 import UIKit
 
+private var reuseIdentifier = "Cell"
+
 class ImagePreviewVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
 
     var myCollectionView: UICollectionView!
@@ -22,7 +24,7 @@ class ImagePreviewVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         myCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         myCollectionView.delegate=self
         myCollectionView.dataSource=self
-        myCollectionView.register(ImagePreviewFullViewCell.self, forCellWithReuseIdentifier: "Cell")
+        myCollectionView.register(ImagePreviewFullViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         myCollectionView.isPagingEnabled = true
         myCollectionView.scrollToItem(at: passedContentOffset, at: .left, animated: true)
         
@@ -36,7 +38,7 @@ class ImagePreviewVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ImagePreviewFullViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImagePreviewFullViewCell
         cell.imgView.image=imgArray[indexPath.row]
         return cell
     }
